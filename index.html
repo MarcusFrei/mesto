@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Марк Казанцев">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Место</title>
+</head>
+
+<body class="root">
+  <header class="header">
+    <img class="header__logo" alt="Лого 'Место'" src="./images/logo.svg">
+  </header>
+  <main class="main">
+    <section class="profile">
+      <img class="profile__image" alt="Фотография Жака-Ив Кусто" src="./images/Zhak-Iv_Kusto.jpg">
+      <div class="profile__info">
+        <div class="profile__name-plus-edit-btn">
+          <h1 class="profile__name">Жак&nbsp;-&nbsp;Ив&nbsp;Кусто</h1>
+          <button class="profile__edit-button profile__edit-button-open-popup" type="button"></button>
+        </div>
+        <p class="profile__about-yourself">Исследователь океана</p>       
+      </div>
+    <button class="profile__add-button" type="button"></button>
+    </section>
+  <section class="gallery">
+    <ul class="gallery__blocks">
+      <li class="gallery__block">
+        <img class="gallery__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
+        <div class="gallery__info"> 
+          <h2 class="gallery__photo-name">Карачаевск</h2>
+          <button class="gallery__like-button gallery__like-button_active" type="button"></button>
+        </div>   
+      </li>
+      <li class="gallery__block">
+        <img class="gallery__image" src="./images/gora-elbrus.jpg" alt="Гора Эльбрус">
+        <div class="gallery__info">
+          <h2 class="gallery__photo-name">Гора Эльбрус</h2>
+          <button class="gallery__like-button gallery__like-button_active" type="button"></button>
+        </div>
+      </li>
+      <li class="gallery__block">
+        <img class="gallery__image" src="./images/dombai.jpg" alt="Домбай">
+        <div class="gallery__info">
+          <h2 class="gallery__photo-name">Домбай</h2>
+          <button class="gallery__like-button gallery__like-button_active" type="button"></button>
+        </div>
+      </li>
+      <li class="gallery__block">
+        <img class="gallery__image" src="./images/gora-elbrus_2.jpg" alt="Гора Эльбрус">
+        <div class="gallery__info">
+          <h2 class="gallery__photo-name">Гора Эльбрус</h2>
+          <button class="gallery__like-button gallery__like-button_active" type="button"></button>
+        </div>
+      </li>
+      <li class="gallery__block">
+        <img class="gallery__image" src="./images/dombai_2.jpg" alt="Домбай">
+        <div class="gallery__info">
+          <h2 class="gallery__photo-name">Домбай</h2>
+          <button class="gallery__like-button gallery__like-button_active" type="button"></button>
+        </div>
+      </li>
+      <li class="gallery__block">
+        <img class="gallery__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
+        <div class="gallery__info">
+          <h2 class="gallery__photo-name">Карачаево-Ч...</h2>
+          <button class="gallery__like-button gallery__like-button_active" type="button"></button>
+        </div>
+      </li>
+    </ul>
+  </section>  
+</main>
+<footer class="footer">
+  <p class="footer__copyright">&copy; 2023 Mesto Russia</p>
+</footer>
+
+
+<!--pop-up-edit-profile-->
+<section class="popup">
+  <div class="popup__edit-profile">
+    <img src="./images/cross.svg" alt="крестик" class="popup__close">
+    <h2 class="popup__title">Редактировать профиль</h2>
+    <form class="popup__info-container">
+      <input type="text" placeholder="Имя" name="name" class="popup__input popup__input_type_name">
+      <input type="text" placeholder="О себе" name="about" class="popup__input popup__input_type_about">
+      <button class="popup__save-button" type="submit">Сохранить</button>
+    </form>
+  </div>
+</section>
+<script src="./scripts/script.js"></script>
+</body>
+</html>

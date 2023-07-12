@@ -1,0 +1,10 @@
+.profile__info {
+    align-self: center;
+}
+
+@media screen and (min-width: 320px) and (max-width: 767px) {
+    .profile__add-button {
+        max-width: 282px;
+        width: 100%;
+    }
+  }
