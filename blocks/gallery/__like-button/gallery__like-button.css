@@ -12,6 +12,7 @@
   background-repeat: no-repeat;
   background-position: center;
   transition: opacity 0.5s;
+  cursor: pointer;
 }
 
 .gallery__like-button:hover {
