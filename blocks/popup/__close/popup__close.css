@@ -4,7 +4,7 @@
   right: -40px;
   cursor: pointer;
   background-image: url(../../../images/cross.svg);
-  background-color: black;
+  background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
   outline: none;
@@ -24,5 +24,6 @@
     width: 20px;
     top: -36px;
     right: 0px;
+    background-size: 20px 20px;
   }
 }

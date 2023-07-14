@@ -4,11 +4,10 @@
   margin: 0;
   padding: 0;
   border: 1px solid white;
-  outline: none;
-  background-color: black;
+  background-color: transparent;
   align-self: center;
   cursor: pointer;
-  background-image: url(../../../images/Edit_Button.svg);
+  background-image: url(../../../images/pencil.svg);
   background-repeat: no-repeat;
   background-position: center;
   transition: opacity 0.5s;
