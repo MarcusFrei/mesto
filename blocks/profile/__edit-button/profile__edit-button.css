@@ -8,6 +8,7 @@
   align-self: center;
   cursor: pointer;
   background-image: url(../../../images/pencil.svg);
+  background-size: 10px 10px;
   background-repeat: no-repeat;
   background-position: center;
   transition: opacity 0.5s;
@@ -23,5 +24,6 @@
     height: 18px;
     margin-left: 10px;
     margin-right: auto;
+    background-size: 7.5px 7.5px;
   }
 }
