@@ -6,4 +6,5 @@
   white-space: nowrap;
   overflow: hidden;
   line-height: normal;
+  max-width: 224px;
 }
