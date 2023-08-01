@@ -29,8 +29,7 @@
         <button class="profile__add-button" type="button"></button>
       </section>
       <section class="gallery">
-        <ul class="gallery__blocks">
-        </ul>
+        <ul class="gallery__blocks"></ul>
       </section>
     </main>
     <footer class="footer">
@@ -38,38 +37,63 @@
     </footer>
 
     <!--pop-up-edit-profile-->
-    <section class="popup" id = "popup__profile">
+    <section class="popup" id="popup__profile">
       <div class="popup__container">
         <button class="popup__close" type="button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form class="popup__info-container" name="popup inputs">
-          <input type="text" placeholder="Имя" name="name" class="popup__input popup__input_type_name"/>
-          <input type="text" placeholder="О себе" name="about" class="popup__input popup__input_type_about"/>
+          <input
+            type="text"
+            placeholder="Имя"
+            name="name"
+            class="popup__input popup__input_type_name"
+          />
+          <input
+            type="text"
+            placeholder="О себе"
+            name="about"
+            class="popup__input popup__input_type_about"
+          />
           <button class="popup__save-button" type="submit">Сохранить</button>
         </form>
       </div>
     </section>
     <!--pop-up-add-card-->
-    <section class="popup" id = "popup__add-card">
+    <section class="popup" id="popup__add-card">
       <div class="popup__container">
         <button class="popup__close" type="button"></button>
         <h2 class="popup__title">Новое место</h2>
-        <form class="popup__info-container popup__add-new-card-info" name="popup inputs">
-          <input type="text" placeholder="Название" name="picture title" class="popup__input popup__input_picture-title"/>
-          <input type="text" placeholder="Ссылка на картинку" name="picture link" class="popup__input popup__input_picture-link"/>
-          <button class="popup__save-button" type="submit" id="add-card-btn">Сохранить</button>
+        <form
+          class="popup__info-container popup__add-new-card-info"
+          name="popup inputs"
+        >
+          <input
+            type="text"
+            placeholder="Название"
+            name="picture title"
+            class="popup__input popup__input_picture-title"
+          />
+          <input
+            type="text"
+            placeholder="Ссылка на картинку"
+            name="picture link"
+            class="popup__input popup__input_picture-link"
+          />
+          <button class="popup__save-button" type="submit" id="add-card-btn">
+            Сохранить
+          </button>
         </form>
       </div>
     </section>
-   <!--pop-up-full-size-picture-->
-   <section class="popup popup__darker" id = "popup__full-size-picture">
-    <div class="popup__image_container">
-      <button class="popup__close" type="button"></button>
-      <img class = "popup__full-image">
-      <p class="popup__image__title"></p>
-    </div>
-   </section>
-   <script   src="./scripts/data.js" defer></script>
-   <script  src="./scripts/index.js" defer></script>
+    <!--pop-up-full-size-picture-->
+    <section class="popup popup_darker" id="popup__full-size-picture">
+      <div class="popup__image-container">
+        <button class="popup__close" type="button"></button>
+        <img class="popup__full-image" />
+        <p class="popup__image_title"></p>
+      </div>
+    </section>
+    <script src="./scripts/data.js" defer></script>
+    <script src="./scripts/index.js" defer></script>
   </body>
 </html>

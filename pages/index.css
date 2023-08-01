@@ -26,10 +26,10 @@
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__close/popup__close.css);
-@import url(../blocks/popup/__darker/popup__darker.css);
+@import url(../blocks/popup/_darker/popup_darker.css);
 @import url(../blocks/popup/__full-image/popup__full-image.css);
-@import url(../blocks/popup/__image__title/popup__image__title.css);
-@import url(../blocks/popup/__image_container/popup__image_container.css);
+@import url(../blocks/popup/__image_title/popup__image_title.css);
+@import url(../blocks/popup/__image-container/popup__image-container.css);
 @import url(../blocks/popup/__title/popup__title.css);
 @import url(../blocks/popup/__info-container/popup__info-container.css);
 @import url(../blocks/popup/__input/popup__input.css);
