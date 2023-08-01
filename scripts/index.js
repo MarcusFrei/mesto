@@ -18,7 +18,7 @@ const popupFullImage = document.getElementById("popup__full-size-picture");
 
 const openFullImage = ({ name, link }) => {
   const popupImg = document.querySelector(".popup__full-image");
-  const popupDesc = document.querySelector(".popup__image__title");
+  const popupDesc = document.querySelector(".popup__image_title");
   popupImg.src = link;
   popupDesc.textContent = name;
   popupFullImage.classList.add("popup_opened");
