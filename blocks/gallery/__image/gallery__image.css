@@ -3,4 +3,5 @@
   margin: 0;
   aspect-ratio: 1 / 1;
   object-fit: cover;
+  cursor: pointer;
 }
