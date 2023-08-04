@@ -1,7 +1,7 @@
 # Проект: Место для Яндекс.Практикум по профилю Веб-Разработчик
 
 ### Описание проекта:
-Создание лендиговой странички с внедренным JS кодом, целью которого является изменения имени и профессии пользователя.
+Создание лендиговой странички с внедренным JS кодом, целью которого является изменения имени и профессии пользователя, удаления карточки и возможности ставить лайки.
 
 ***Технологии:***
 
@@ -16,11 +16,11 @@
 
 **Figma**
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+* [Ссылка на макет в Figma]((https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=50160%3A229&mode=dev)
 
 **GitHub:**
 
-https://github.com/MarcusFrei/russian-travel
+https://github.com/MarcusFrei/mesto
 
 **Сайт проекта:**
 
