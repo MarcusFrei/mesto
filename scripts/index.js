@@ -15,12 +15,9 @@ const cardPopup = document.getElementById("popup__add-card");
 const addCardBtn = document.getElementById("add-card-btn");
 const pictureTitleInput = document.querySelector(".popup__input_picture-title");
 const pictureLinkInput = document.querySelector(".popup__input_picture-link");
-const likeButtons = document.querySelectorAll(".gallery__like-button");
 const popupFullImage = document.getElementById("popup__full-size-picture");
-// let activePopup = null;
 
 const openPopup = (currentPopup) => {
-  activePopup = currentPopup;
   currentPopup.classList.add("popup_opened");
 };
 
@@ -28,12 +25,6 @@ const closePopup = (currentPopup) => {
   currentPopup.classList.remove("popup_opened");
   activePopup = null;
 };
-
-// document.addEventListener("keyup", (e) => {
-//   if (e.keyCode === 27) {
-//     if (activePopup !== null) closePopup(activePopup);
-//   }
-// });
 
 const openFullImage = ({ name, link }) => {
   const popupImg = document.querySelector(".popup__full-image");
@@ -63,11 +54,16 @@ const createCard = (cardProps, isNewCard = false) => {
     deleteButton.closest(".gallery__block").remove()
   );
 
+  return newCard;
+};
+
+const addNewCard = (cardProps, isNewCard = false) => {
+  const newCard = createCard(cardProps);
   if (isNewCard) galleryBlock.insertBefore(newCard, galleryBlock.firstChild);
   else galleryBlock.append(newCard);
 };
 
-initialCards.forEach((card) => createCard(card));
+initialCards.forEach((card) => addNewCard(card));
 
 btnOpenProfile.addEventListener("click", function () {
   openPopup(popupProfile);
@@ -86,12 +82,10 @@ profileAddBtn.addEventListener("click", () => {
 });
 
 function likeBtnFnc(evt) {
-  if (evt.target.classList.contains("gallery__like-button")) {
-    evt.target.classList.toggle("gallery__like-button_active");
-  }
+  evt.target.classList.toggle("gallery__like-button_active");
 }
 
-function formSubmitHandler(evt) {
+function formEditProfileSubmitHandler(evt) {
   evt.preventDefault();
   profileName.textContent = popupInputName.value;
   profileAbout.textContent = popupInputAbout.value;
@@ -107,9 +101,9 @@ function formCardAddHandler(evt) {
   };
   pictureTitleInput.value = "";
   pictureLinkInput.value = "";
-  createCard(tempObj, true);
+  addNewCard(tempObj, true);
 }
 
-formAddCardInfo.addEventListener("submit", formCardAddHandler);
+popupInfoContainer.addEventListener("submit", formEditProfileSubmitHandler);
 
-popupInfoContainer.addEventListener("submit", formSubmitHandler);
+formAddCardInfo.addEventListener("submit", formCardAddHandler);
