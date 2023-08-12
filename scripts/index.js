@@ -12,13 +12,23 @@ const formAddCardInfo = document.querySelector(".popup__add-new-card-info");
 const profileAddBtn = document.querySelector(".profile__add-button");
 const galleryBlock = document.querySelector(".gallery__blocks");
 const cardPopup = document.getElementById("popup__add-card");
-const addCardBtn = document.getElementById("add-card-btn");
 const pictureTitleInput = document.querySelector(".popup__input_picture-title");
 const pictureLinkInput = document.querySelector(".popup__input_picture-link");
 const popupFullImage = document.getElementById("popup__full-size-picture");
+let activePopup = null;
+const submitButton = formAddCardInfo.querySelector("button[type=submit]");
+const imageError = document.getElementById("image-error");
+const imageTextError = document.getElementById("image-text-error");
+submitButton.disabled = true;
+const nameError = document.getElementById("name-error");
+const aboutYourselfError = document.getElementById("about-yourself-error");
+const submitButtonProfile = popupInfoContainer.querySelector(
+  "button[type=submit]"
+);
 
 const openPopup = (currentPopup) => {
   currentPopup.classList.add("popup_opened");
+  activePopup = currentPopup;
 };
 
 const closePopup = (currentPopup) => {
@@ -67,8 +77,10 @@ initialCards.forEach((card) => addNewCard(card));
 
 btnOpenProfile.addEventListener("click", function () {
   openPopup(popupProfile);
+
   popupInputName.value = profileName.textContent;
   popupInputAbout.value = profileAbout.textContent;
+  validateAboutInfo();
 });
 
 for (const closeBtn of popupCloseArr) {
@@ -102,8 +114,95 @@ function formCardAddHandler(evt) {
   pictureTitleInput.value = "";
   pictureLinkInput.value = "";
   addNewCard(tempObj, true);
+  submitButton.disabled = true;
 }
 
 popupInfoContainer.addEventListener("submit", formEditProfileSubmitHandler);
 
 formAddCardInfo.addEventListener("submit", formCardAddHandler);
+
+// Esc close
+document.addEventListener("keyup", (e) => {
+  if (e.key === "Escape") {
+    if (activePopup !== null) closePopup(activePopup);
+  }
+});
+//
+
+const closePopupOverlay = (e) => {
+  if (
+    [...e.target.classList].includes("popup") &&
+    [...e.target.classList].includes("popup_opened")
+  )
+    closePopup(activePopup);
+};
+const overlayArr = document.querySelectorAll(".popup");
+
+[...overlayArr].forEach((item) =>
+  item.addEventListener("click", (e) => closePopupOverlay(e))
+);
+//----------------------
+
+//-validation-add-card//
+formAddCardInfo.addEventListener("input", () => {
+  const inputName = formAddCardInfo.querySelector(
+    "input[name='picture title']"
+  );
+
+  if (!inputName.validity.valid) {
+    imageTextError.textContent = "Вы пропустили это поле.";
+    inputName.style.borderBottom = "1px solid #F00";
+    return;
+  }
+  imageTextError.textContent = "";
+  inputName.style.borderBottom = "1px solid rgba(0, 0, 0, 0.2)";
+
+  const inputAbout = formAddCardInfo.querySelector(
+    "input[name='picture link']"
+  );
+  if (inputAbout.value.length === 0) return;
+  if (!inputAbout.validity.valid) {
+    imageError.textContent = "Введите адрес сайта.";
+    inputAbout.style.borderBottom = "1px solid #F00";
+    return;
+  }
+
+  imageError.textContent = "";
+  inputAbout.style.borderBottom = "1px solid rgba(0, 0, 0, 0.2)";
+  submitButton.disabled = false;
+});
+
+//----------------------//
+
+//-validation for edit-form
+popupInfoContainer.addEventListener("input", validateAboutInfo);
+
+function validateAboutInfo() {
+  const inputName = popupInfoContainer.querySelector("input[name='name']");
+
+  if (!inputName.validity.valid) {
+    nameError.textContent = "Вы пропустили это поле.";
+    inputName.style.borderBottom = "1px solid #F00";
+    if (inputName.value.length === 1) {
+      nameError.textContent =
+        "Минимальное количество символов: 2. Длина текста сейчас: 1 символ.";
+      inputName.style.borderBottom = "1px solid #F00";
+    }
+  } else {
+    nameError.textContent = "";
+    inputName.style.borderBottom = "1px solid rgba(0, 0, 0, 0.2)";
+  }
+  const inputAbout = popupInfoContainer.querySelector("input[name='about']");
+  if (!inputAbout.validity.valid) {
+    aboutYourselfError.textContent = "Вы пропустили это поле.";
+    inputAbout.style.borderBottom = "1px solid #F00";
+    if (inputAbout.value.length === 1) {
+      aboutYourselfError.textContent =
+        "Минимальное количество символов: 2. Длина текста сейчас: 1 символ.";
+      inputAbout.style.borderBottom = "1px solid #F00";
+    }
+    return;
+  }
+  aboutYourselfError.textContent = "";
+  inputAbout.style.borderBottom = "1px solid rgba(0, 0, 0, 0.2)";
+}
