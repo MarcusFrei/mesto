@@ -26,3 +26,10 @@
     font-size: 14px;
   }
 }
+
+.popup__save-button:disabled {
+  background-color: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}

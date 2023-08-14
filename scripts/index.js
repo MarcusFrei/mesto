@@ -26,6 +26,8 @@ const submitButtonProfile = popupInfoContainer.querySelector(
   "button[type=submit]"
 );
 
+submitButtonProfile.disabled = true;
+
 const openPopup = (currentPopup) => {
   currentPopup.classList.add("popup_opened");
   activePopup = currentPopup;
@@ -141,41 +143,6 @@ const overlayArr = document.querySelectorAll(".popup");
 [...overlayArr].forEach((item) =>
   item.addEventListener("click", (e) => closePopupOverlay(e))
 );
-//----------------------
-
-//-validation-add-card//
-formAddCardInfo.addEventListener("input", () => {
-  const inputName = formAddCardInfo.querySelector(
-    "input[name='picture title']"
-  );
-
-  if (!inputName.validity.valid) {
-    imageTextError.textContent = "Вы пропустили это поле.";
-    inputName.style.borderBottom = "1px solid #F00";
-    return;
-  }
-  imageTextError.textContent = "";
-  inputName.style.borderBottom = "1px solid rgba(0, 0, 0, 0.2)";
-
-  const inputAbout = formAddCardInfo.querySelector(
-    "input[name='picture link']"
-  );
-  if (inputAbout.value.length === 0) return;
-  if (!inputAbout.validity.valid) {
-    imageError.textContent = "Введите адрес сайта.";
-    inputAbout.style.borderBottom = "1px solid #F00";
-    return;
-  }
-
-  imageError.textContent = "";
-  inputAbout.style.borderBottom = "1px solid rgba(0, 0, 0, 0.2)";
-  submitButton.disabled = false;
-});
-
-//----------------------//
-
-//-validation for edit-form
-popupInfoContainer.addEventListener("input", validateAboutInfo);
 
 function validateAboutInfo() {
   const inputName = popupInfoContainer.querySelector("input[name='name']");
@@ -188,6 +155,7 @@ function validateAboutInfo() {
         "Минимальное количество символов: 2. Длина текста сейчас: 1 символ.";
       inputName.style.borderBottom = "1px solid #F00";
     }
+    submitButtonProfile.disabled = true;
   } else {
     nameError.textContent = "";
     inputName.style.borderBottom = "1px solid rgba(0, 0, 0, 0.2)";
@@ -201,8 +169,11 @@ function validateAboutInfo() {
         "Минимальное количество символов: 2. Длина текста сейчас: 1 символ.";
       inputAbout.style.borderBottom = "1px solid #F00";
     }
-    return;
+    submitButtonProfile.disabled = true;
+  } else {
+    aboutYourselfError.textContent = "";
+    inputAbout.style.borderBottom = "1px solid rgba(0, 0, 0, 0.2)";
   }
-  aboutYourselfError.textContent = "";
-  inputAbout.style.borderBottom = "1px solid rgba(0, 0, 0, 0.2)";
+  if (inputAbout.validity.valid && inputName.validity.valid)
+    submitButtonProfile.disabled = false;
 }

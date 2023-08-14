@@ -54,7 +54,7 @@
           aria-label="Кнопка закрытия попапа для редактирования информации"
         ></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__info-container" name="popup inputs">
+        <form class="popup__info-container" name="popup inputs" novalidate>
           <div class="popup__info-container_input-plus-error">
             <input
               type="text"
@@ -79,8 +79,9 @@
             />
             <p class="popup__errors" id="about-yourself-error"></p>
           </div>
-
-          <button class="popup__save-button" type="submit">Сохранить</button>
+          <button id="submit-profile" class="popup__save-button" type="submit">
+            Сохранить
+          </button>
         </form>
       </div>
     </section>
@@ -96,12 +97,13 @@
         <form
           class="popup__info-container popup__add-new-card-info"
           name="popup inputs"
+          novalidate
         >
           <div class="popup__info-container_input-plus-error">
             <input
               type="text"
               placeholder="Название"
-              name="picture title"
+              name="picture-title"
               class="popup__input popup__input_picture-title"
               required
               minlength="2"
@@ -113,7 +115,7 @@
             <input
               type="url"
               placeholder="Ссылка на картинку"
-              name="picture link"
+              name="picture-link"
               class="popup__input popup__input_picture-link"
               required
             />
@@ -157,5 +159,6 @@
       </div>
     </template>
     <script src="./scripts/index.js" defer></script>
+    <script src="./scripts/validate.js" defer></script>
   </body>
 </html>
