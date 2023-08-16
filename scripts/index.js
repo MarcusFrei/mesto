@@ -125,7 +125,6 @@ function addCardHandler(evt) {
   };
   evt.target.reset();
   addNewCard(tempObj, true);
-  submitButton.disabled = true;
 }
 
 popupInfoContainer.addEventListener("submit", editProfileSubmitHandler);

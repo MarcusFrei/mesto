@@ -4,7 +4,7 @@
 const validationConfiguration = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
+  submitButtonSelector: ".popup__save-button",
   inactiveButtonClass: "popup__button_disabled",
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__error_visible",
@@ -29,10 +29,10 @@ const checkInputValidity = (input, validConfig, form) => {
 
 const checkFormsValidity = (forms, validConfig) => {
   forms.forEach((form) => {
-    const submitBtn = form.querySelector("button[type=submit]");
+    const submitBtn = form.querySelector(validConfig.submitButtonSelector);
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      submitBtn.disabled = true;
+      disableButton(submitBtn);
       e.target.reset();
     });
     const formInputs = [...form.querySelectorAll(validConfig.inputSelector)];
@@ -43,12 +43,16 @@ const checkFormsValidity = (forms, validConfig) => {
           if (checkFormValidity(formInputs)) {
             submitBtn.removeAttribute("disabled");
           } else {
-            submitBtn.disabled = true;
+            disableButton(submitBtn);
           }
         }
       });
     });
   });
+};
+
+const disableButton = (button) => {
+  button.disabled = true;
 };
 
 const enableValidation = (validConfig) => {
