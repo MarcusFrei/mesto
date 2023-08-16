@@ -54,7 +54,11 @@
           aria-label="Кнопка закрытия попапа для редактирования информации"
         ></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__info-container" name="popup inputs" novalidate>
+        <form
+          class="popup__info-container popup__form"
+          name="popup inputs"
+          novalidate
+        >
           <div class="popup__info-container-error">
             <input
               type="text"
@@ -65,7 +69,7 @@
               minlength="2"
               maxlength="40"
             />
-            <p class="popup__errors" id="name-error"></p>
+            <p data-target="name" class="popup__errors" id="name-error"></p>
           </div>
           <div class="popup__info-container-error">
             <input
@@ -77,7 +81,11 @@
               minlength="2"
               maxlength="200"
             />
-            <p class="popup__errors" id="about-yourself-error"></p>
+            <p
+              data-target="about"
+              class="popup__errors"
+              id="about-yourself-error"
+            ></p>
           </div>
           <button id="submit-profile" class="popup__save-button" type="submit">
             Сохранить
@@ -95,7 +103,7 @@
         ></button>
         <h2 class="popup__title">Новое место</h2>
         <form
-          class="popup__info-container popup__add-new-card-info"
+          class="popup__info-container popup__add-new-card-info popup__form"
           name="popup inputs"
           novalidate
         >
@@ -109,7 +117,11 @@
               minlength="2"
               maxlength="30"
             />
-            <p id="image-text-error" class="popup__errors"></p>
+            <p
+              data-target="picture-title"
+              id="image-text-error"
+              class="popup__errors"
+            ></p>
           </div>
           <div class="popup__info-container-error">
             <input
@@ -119,7 +131,11 @@
               class="popup__input popup__input_picture-link"
               required
             />
-            <p id="image-error" class="popup__errors"></p>
+            <p
+              data-target="picture-link"
+              id="image-error"
+              class="popup__errors"
+            ></p>
           </div>
           <button id="submit-card" class="popup__save-button" type="submit">
             Сохранить

@@ -1,77 +1,61 @@
-const profileObj = {
-  form: popupInfoContainer,
-  formInputs: [
-    {
-      inputName: "name",
-      inputErrorId: "name-error",
-      inputErrorText: [
-        "Вы пропустили это поле.",
-        "Минимальное количество символов: 2. Длина текста сейчас: 1 символ.",
-      ],
-    },
-    {
-      inputName: "about",
-      inputErrorId: "about-yourself-error",
-      inputErrorText: [
-        "Вы пропустили это поле.",
-        "Минимальное количество символов: 2. Длина текста сейчас: 1 символ.",
-      ],
-    },
-  ],
+// включение валидации вызовом enableValidation
+// все настройки передаются при вызове
+
+const validationConfiguration = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
 };
 
-const cardObj = {
-  form: formAddCardInfo,
-  formInputs: [
-    {
-      inputName: "picture-title",
-      inputErrorId: "image-text-error",
-      inputErrorText: [
-        "Вы пропустили это поле.",
-        "Минимальное количество символов: 2. Длина текста сейчас: 1 символ.",
-      ],
-    },
-    {
-      inputName: "picture-link",
-      inputErrorId: "image-error",
-      inputErrorText: ["Введите адрес сайта."],
-    },
-  ],
+const checkFormValidity = ([firstInput, secondInput]) => {
+  if (firstInput.validity.valid && secondInput.validity.valid) return true;
+  return false;
 };
 
-formAddCardInfo.addEventListener("input", () => enableValidation(cardObj));
-
-popupInfoContainer.addEventListener("input", () =>
-  enableValidation(profileObj)
-);
-
-function validateInput(input, error, errorText, submitBtn) {
-  if (!input.validity.valid) {
-    error.textContent = errorText[0];
-    input.style.borderBottom = "1px solid #F00";
-    if (errorText.length !== 1) {
-      if (input.value.length === 1) {
-        error.textContent = errorText[1];
-        input.style.borderBottom = "1px solid #F00";
-      }
-    }
-    submitBtn.disabled = true;
-    return false;
+const checkInputValidity = (input, validConfig, form) => {
+  const inputName = input.name;
+  const errorText = form.querySelector(`[data-target="${inputName}"]`);
+  if (input.validity.valid) {
+    errorText.textContent = "";
+    input.classList.remove(validConfig.inputErrorClass);
   } else {
-    error.textContent = "";
-    input.style.borderBottom = "1px solid rgba(0, 0, 0, 0.2)";
+    errorText.textContent = input.validationMessage;
+    input.classList.add(validConfig.inputErrorClass);
   }
-  return true;
-}
+};
 
-function enableValidation({ form, formInputs }) {
-  const btn = form.querySelector("button[type=submit]");
-  let flag = true;
-  formInputs.forEach((input) => {
-    const inputObj = form.querySelector(`input[name=${input.inputName}]`);
-    const inputErrorObj = document.getElementById(input.inputErrorId);
-    if (!validateInput(inputObj, inputErrorObj, input.inputErrorText, btn))
-      flag = false;
+const checkFormsValidity = (forms, validConfig) => {
+  forms.forEach((form) => {
+    const submitBtn = form.querySelector("button[type=submit]");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      e.target.reset();
+    });
+    const formInputs = [...form.querySelectorAll(validConfig.inputSelector)];
+    formInputs.forEach((input) => {
+      input.addEventListener("input", () => {
+        {
+          checkInputValidity(input, validConfig, form);
+          if (checkFormValidity(formInputs)) {
+            submitBtn.removeAttribute("disabled");
+          } else {
+            submitBtn.disabled = true;
+          }
+        }
+      });
+    });
   });
-  if (flag) btn.disabled = false;
-}
+};
+
+const enableValidation = (validConfig) => {
+  const documentForms = [
+    ...document.querySelectorAll(validConfig.formSelector),
+  ];
+  checkFormsValidity(documentForms, validConfig);
+};
+
+enableValidation(validationConfiguration);
