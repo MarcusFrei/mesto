@@ -80,19 +80,18 @@ const createCard = (cardProps, isNewCard = false) => {
 };
 
 const addNewCard = (cardProps, isNewCard = false) => {
-  const newCard = createCard(cardProps);
-  if (isNewCard) galleryBlock.insertBefore(newCard, galleryBlock.firstChild);
-  else galleryBlock.append(newCard);
+  const tempCard = new Card(cardProps, "gallery-template");
+  const cardElement = tempCard.createCard();
+  if (isNewCard)
+    galleryBlock.insertBefore(cardElement, galleryBlock.firstChild);
+  else galleryBlock.append(cardElement);
 };
-
-initialCards.forEach(addNewCard);
 
 btnOpenProfile.addEventListener("click", function () {
   openPopup(popupProfile);
 
   popupInputName.value = profileName.textContent;
   popupInputAbout.value = profileAbout.textContent;
-  // validateAboutInfo();
 });
 
 for (const closeBtn of popupCloseArr) {
@@ -140,4 +139,8 @@ popups.forEach((popup) => {
       closePopup(popup);
     }
   });
+});
+
+initialCards.forEach((cardData) => {
+  addNewCard(cardData);
 });
