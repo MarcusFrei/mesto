@@ -56,29 +56,6 @@ const openFullImage = ({ name, link }) => {
   openPopup(popupFullImage);
 };
 
-const createCard = (cardProps, isNewCard = false) => {
-  const cardTemplate = document.getElementById("gallery-template");
-  const newCard = cardTemplate.content.cloneNode(true);
-  const currentImg = newCard.querySelector(".gallery__image");
-  currentImg.src = cardProps.link;
-  currentImg.alt = cardProps.name;
-  currentImg.addEventListener("click", () => openFullImage(cardProps));
-  const currentTitle = newCard.querySelector(".gallery__photo-name");
-  currentTitle.textContent = cardProps.name;
-
-  const deleteButton = newCard.querySelector(".gallery__block-button-delete");
-
-  const likeButton = newCard.querySelector(".gallery__like-button");
-
-  likeButton.addEventListener("click", handleLikeBtn);
-
-  deleteButton.addEventListener("click", () =>
-    deleteButton.closest(".gallery__block").remove()
-  );
-
-  return newCard;
-};
-
 const addNewCard = (cardProps, isNewCard = false) => {
   const tempCard = new Card(cardProps, "gallery-template");
   const cardElement = tempCard.createCard();
