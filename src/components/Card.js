@@ -7,17 +7,15 @@ export class Card {
   }
 
   _getTemplate() {
-    const cardTemplate = document
-      .getElementById(this._templateSelector)
-      .content.cloneNode(true);
-    return cardTemplate;
+    return document
+        .getElementById(this._templateSelector)
+        .content
+        .cloneNode(true);
   }
 
   _handleLikeBtn(evt) {
     evt.target.classList.toggle("gallery__like-button_active");
   }
-
- 
 
   _setListeners() {
     const deleteButton = this._element.querySelector(

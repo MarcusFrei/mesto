@@ -1,6 +1,13 @@
 export class FormValidator {
-  constructor(config, formElement) {
-    this._config = config;
+  constructor( formElement) {
+    this._config = {
+      formSelector: ".popup__form",
+      inputSelector: ".popup__input",
+      submitButtonSelector: ".popup__save-button",
+      inactiveButtonClass: "popup__button_disabled",
+      inputErrorClass: "popup__input_type_error",
+      errorClass: "popup__error_visible",
+    };
     this._formElement = formElement;
     this._submitBtn = this._formElement.querySelector(
       this._config.submitButtonSelector
@@ -10,29 +17,31 @@ export class FormValidator {
     ];
   }
 
-  _checkInputValidity = (input, validConfig, form) => {
+
+ 
+  _checkInputValidity = (input) => {
     const inputName = input.name;
-    const errorText = form.querySelector(`[data-target="${inputName}"]`);
+    const errorText = this._formElement.querySelector(`[data-target="${inputName}"]`);
     if (input.validity.valid) {
       errorText.textContent = "";
-      input.classList.remove(validConfig.inputErrorClass);
+      input.classList.remove(this._config.inputErrorClass);
     } else {
       errorText.textContent = input.validationMessage;
-      input.classList.add(validConfig.inputErrorClass);
+      input.classList.add(this._config.inputErrorClass);
     }
   };
 
-  _checkFormValidity = ([firstInput, secondInput]) => {
-    if (firstInput.validity.valid && secondInput.validity.valid) return true;
-    return false;
+  _checkFormValidity = () => {
+    const [firstInput, secondInput] =  this._inputsArr;
+    return firstInput.validity.valid && secondInput.validity.valid
   };
 
   _setListeners() {
     this._inputsArr.forEach((input) => {
       input.addEventListener("input", () => {
         {
-          this._checkInputValidity(input, this._config, this._formElement);
-          if (this._checkFormValidity(this._inputsArr)) {
+          this._checkInputValidity(input);
+          if (this._checkFormValidity()) {
             this._submitBtn.removeAttribute("disabled");
           } else {
             this._submitBtn.disabled = true;
@@ -53,3 +62,5 @@ export class FormValidator {
   }
 }
 
+const submitButtonProfile = document.getElementById('submit-profile')
+submitButtonProfile.disabled = true;

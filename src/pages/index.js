@@ -3,7 +3,7 @@ import './index.scss';
 
 import { PopupWithImage } from '../components/PopupWithImage';
 import { Section } from '../components/Section';
-import { initialCards} from '../components/data';
+import { initialCards} from '../utils/data';
 import { Card } from '../components/Card';
 import { PopupWithForm } from '../components/PopupWithForm';
 import { UserInfo } from '../components/UserInfo';
@@ -29,14 +29,6 @@ const imageTextError = document.getElementById("image-text-error");
 submitButton.disabled = true;
 //const nameError = document.getElementById("name-error");
 //const aboutYourselfError = document.getElementById("about-yourself-error");
-const submitButtonProfile = popupInfoContainer.querySelector(
-  "button[type=submit]"
-);
-
-
-
-submitButtonProfile.disabled = true;
-
 // cards ->>>>>>>
 
 const imgContainer = document.querySelector('.popup__image-container')
@@ -107,21 +99,11 @@ btnOpenProfile.addEventListener("click", function () {
   popupInputAbout.value = about;
 });
 
-//>>>>
-const validationConfiguration = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__save-button",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
-};
-
 const documentForms = [
-  ...document.querySelectorAll(validationConfiguration.formSelector),
+  ...document.querySelectorAll('.popup__form'),
 ];
 
 documentForms.forEach((form) => {
-  const tempForm = new FormValidator(validationConfiguration, form);
+  const tempForm = new FormValidator( form);
   tempForm.enableValidation();
 });
