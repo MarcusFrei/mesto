@@ -1,5 +1,5 @@
 export class FormValidator {
-  constructor( formElement) {
+  constructor(formElement) {
     this._config = {
       formSelector: ".popup__form",
       inputSelector: ".popup__input",
@@ -17,11 +17,13 @@ export class FormValidator {
     ];
   }
 
-
- 
   _checkInputValidity = (input) => {
+    console.log(input.name);
+    console.log(input.value);
     const inputName = input.name;
-    const errorText = this._formElement.querySelector(`[data-target="${inputName}"]`);
+    const errorText = this._formElement.querySelector(
+      `[data-target="${inputName}"]`
+    );
     if (input.validity.valid) {
       errorText.textContent = "";
       input.classList.remove(this._config.inputErrorClass);
@@ -31,9 +33,13 @@ export class FormValidator {
     }
   };
 
+  // _checkFormValidity = () => {
+  //   const [firstInput, secondInput] = this._inputsArr;
+  //   return firstInput.validity.valid && secondInput.validity.valid;
+  // };
+
   _checkFormValidity = () => {
-    const [firstInput, secondInput] =  this._inputsArr;
-    return firstInput.validity.valid && secondInput.validity.valid
+    return this._inputsArr.every((elem) => elem.validity.valid);
   };
 
   _setListeners() {
@@ -62,5 +68,5 @@ export class FormValidator {
   }
 }
 
-const submitButtonProfile = document.getElementById('submit-profile')
+const submitButtonProfile = document.getElementById("submit-profile");
 submitButtonProfile.disabled = true;

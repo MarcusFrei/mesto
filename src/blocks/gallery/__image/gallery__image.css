@@ -4,4 +4,6 @@
   aspect-ratio: 1 / 1;
   object-fit: cover;
   cursor: pointer;
+  display: block;
+  background: grey;
 }

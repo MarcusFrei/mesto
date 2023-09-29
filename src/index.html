@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="Марк Казанцев"/>
+    <meta name="author" content="Марк Казанцев" />
     <title>Место</title>
   </head>
   <!-- <script src="./scripts/data.js" defer></script> -->
@@ -13,21 +13,23 @@
     </header>
     <main class="main">
       <section class="profile">
-        <img
-          class="profile__image"
-          alt="Фотография Жака-Ив Кусто"
-          src="./images/Zhak-Iv_Kusto.jpg"
-        />
+        <div class="profile__image-pencil">
+          <img
+            class="profile__image"
+            id="profile__image"
+            alt="Фотография Жака-Ив Кусто"
+          />
+        </div>
         <div class="profile__info">
           <div class="profile__name-plus-edit-btn">
-            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <h1 class="profile__name"></h1>
             <button
               class="profile__edit-button"
               type="button"
               aria-label="Кнопка редактирования профиля"
             ></button>
           </div>
-          <p class="profile__about-yourself">Исследователь океана</p>
+          <p class="profile__about-yourself"></p>
         </div>
         <button
           class="profile__add-button"
@@ -129,11 +131,8 @@
               class="popup__input popup__input_picture-link"
               required
             />
-            <p
-              data-target="link"
-              id="image-error"
-              class="popup__errors"
-            ></p>
+
+            <p data-target="link" id="image-error" class="popup__errors"></p>
           </div>
           <button id="submit-card" class="popup__save-button" type="submit">
             Сохранить
@@ -149,6 +148,39 @@
         <p class="popup__image-title"></p>
       </div>
     </section>
+    <!--pop-up-delete-confirmation-->
+    <section class="popup popup_delete" id="popup__delete-confirmation">
+      <div class="popup__container">
+        <button class="popup__close" type="button"></button>
+        <h2 class="popup__delete-title">Вы уверены?</h2>
+        <button id="delete-card" class="popup__delete-button">Да</button>
+      </div>
+    </section>
+    <!--pop-up-profile-photo-change-->
+    <section class="popup popup_profile-photo-change" id="popup__photo-change">
+      <div class="popup__container">
+        <button class="popup__close" type="button"></button>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <form
+          class="popup__info-container popup__info-picture popup__form"
+          name="popup picture link"
+          novalidate
+        >
+          <input
+            type="text"
+            name="avatar"
+            placeholder="Ссылка на картинку"
+            class="popup__input popup__input_picture-profile-link"
+            required
+          />
+          <p data-target="avatar" id="image-error" class="popup__errors"></p>
+
+          <button id="" class="popup__save-button" type="submit">
+            Сохранить
+          </button>
+        </form>
+      </div>
+    </section>
     <!--gallery-template-->
     <template class="d-none" id="gallery-template">
       <div class="gallery__block">
@@ -159,21 +191,19 @@
         ></button>
         <div class="gallery__info">
           <h2 class="gallery__photo-name"></h2>
-          <button
-            class="gallery__like-button"
-            type="button"
-            aria-label="Кнопка лайка карточки"
-          ></button>
+          <div class="gallery__info_like-block">
+            <button
+              class="gallery__like-button"
+              type="button"
+              aria-label="Кнопка лайка карточки"
+            ></button>
+            <span
+              class="gallery__like-counter"
+              aria-label="Количество лайков"
+            ></span>
+          </div>
         </div>
       </div>
     </template>
-    <!-- <script src="./scripts/Section.js" defer></script>
-    <script src="./scripts/Card.js" defer></script>
-    <script src="./scripts/Popup.js" defer></script>
-    <script src="./scripts/PopupWithImage.js" defer></script> 
-    <script src="./scripts/PopupWithForm.js" defer></script>
-    <script src="./scripts/UserInfo.js" defer></script>
-    <script src="./scripts/index.js" defer></script>
-    <script src="./scripts/FormValidator.js" defer></script> -->
   </body>
 </html>

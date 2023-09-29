@@ -11,7 +11,7 @@
   background-size: 10px 10px;
   background-repeat: no-repeat;
   background-position: center;
-  transition: opacity 0.5s;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .profile__edit-button:hover {
