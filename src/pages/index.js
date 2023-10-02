@@ -7,8 +7,8 @@ import { Card } from "../components/Card";
 import { PopupWithForm } from "../components/PopupWithForm";
 import { UserInfo } from "../components/UserInfo";
 import { FormValidator } from "../components/FormValidator";
-import { Api } from "../api/API";
-import { PopupwithAccept } from "../components/PopupWithAccept";
+import { Api } from "../components/Api";
+import { PopupWithAccept } from "../components/PopupWithAccept";
 
 const btnOpenProfile = document.querySelector(".profile__edit-button");
 const profileInfo = document.querySelector(".profile__info");
@@ -23,16 +23,16 @@ submitButton.disabled = true;
 
 const api = new Api(apiConfig);
 let userId = null;
-Promise.all([api.getInitialCards(), api.getUserInfo()]).then(
-  ([initialCards, user]) => {
+Promise.all([api.getInitialCards(), api.getUserInfo()])
+  .then(([initialCards, user]) => {
     initialCards.reverse();
     userId = user._id;
-    cards.render(initialCards);
+    cards.renderItems(initialCards);
 
     userInformation.setUserInfo(user);
     userInformation.setUserAvatar(user);
-  }
-);
+  })
+  .catch((e) => console.log(e));
 
 // cards ->>>>>>>
 
@@ -103,7 +103,7 @@ const cards = new Section(
 
 // ->DELETEPOPUP
 const deletePopup = document.querySelector(".popup_delete");
-const deleteCardPopup = new PopupwithAccept(deletePopup, (cardId, card) => {
+const deleteCardPopup = new PopupWithAccept(deletePopup, (cardId, card) => {
   card.deleteCard();
 });
 deleteCardPopup.setEventListeners();
@@ -118,7 +118,8 @@ const popupAddCard = new PopupWithForm(cardPopup, (data) => {
       const card = createNewCard(info);
       cards.addItem(card);
     })
-    .catch((e) => console.log(e));
+    .catch((e) => console.log(e))
+    .finally(() => popupAddCard.closePopup());
 });
 popupAddCard.setEventListeners();
 
@@ -146,7 +147,8 @@ const popupProfile = new PopupWithForm(profilePopupElement, (data) => {
   api
     .editProfile(data)
     .then((info) => userInformation.setUserInfo(info))
-    .catch((e) => console.log(e));
+    .catch((e) => console.log(e))
+    .finally(() => popupProfile.closePopup());
 });
 
 popupProfile.setEventListeners();
@@ -162,13 +164,18 @@ btnOpenProfile.addEventListener("click", function () {
 const updateAvatar = document.getElementById("popup__photo-change");
 const updateAvatarBtn = document.getElementById("profile__image");
 const popupAvatar = new PopupWithForm(updateAvatar, (data) => {
+  popupAvatar.renderLoading(true);
   api
     .updateAvatar(data)
     .then((response) => {
       console.log(response);
       userInformation.setUserAvatar(response);
     })
-    .catch((e) => console.log(e));
+    .catch((e) => console.log(e))
+    .finally(() => {
+      popupAvatar.closePopup();
+      popupAvatar.renderLoading(false);
+    });
 });
 popupAvatar.setEventListeners();
 

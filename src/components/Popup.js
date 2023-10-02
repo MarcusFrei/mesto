@@ -10,7 +10,6 @@ export class Popup {
   }
 
   closePopup() {
-    console.log(this._selector);
     this._selector.classList.remove("popup_opened");
     document.removeEventListener("keyup", this._closeByEscape);
   }
@@ -27,10 +26,8 @@ export class Popup {
         evt.target.classList.contains("popup_opened") ||
         evt.target.classList.contains("popup__close")
       ) {
-        console.log("correct click");
         this.closePopup();
       } else {
-        console.log("incorrect click");
       }
     });
   }

@@ -6,4 +6,5 @@
   cursor: pointer;
   display: block;
   background: grey;
+  max-height: 282px;
 }

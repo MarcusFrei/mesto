@@ -33,16 +33,14 @@ export class FormValidator {
     }
   };
 
-  // _checkFormValidity = () => {
-  //   const [firstInput, secondInput] = this._inputsArr;
-  //   return firstInput.validity.valid && secondInput.validity.valid;
-  // };
-
   _checkFormValidity = () => {
+    console.log("validity");
     return this._inputsArr.every((elem) => elem.validity.valid);
   };
 
   _setListeners() {
+    this._checkFormValidity();
+    this._submitBtn.disabled = true;
     this._inputsArr.forEach((input) => {
       input.addEventListener("input", () => {
         {
@@ -59,7 +57,7 @@ export class FormValidator {
     this._formElement.addEventListener("submit", (e) => {
       e.preventDefault();
       this._submitBtn.disabled = true;
-      e.target.reset();
+      //e.target.reset();
     });
   }
 
@@ -67,6 +65,3 @@ export class FormValidator {
     this._setListeners();
   }
 }
-
-const submitButtonProfile = document.getElementById("submit-profile");
-submitButtonProfile.disabled = true;

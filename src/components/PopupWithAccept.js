@@ -1,6 +1,6 @@
 import { Popup } from "./Popup";
 
-export class PopupwithAccept extends Popup {
+export class PopupWithAccept extends Popup {
   constructor(selector, submitForm) {
     super(selector);
     this._submitForm = submitForm;

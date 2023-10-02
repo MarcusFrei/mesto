@@ -4,7 +4,6 @@
   max-height: 120px;
   object-fit: cover;
   aspect-ratio: 1/1;
-  background-image: url(../../../../src/images/pencil.svg);
 }
 
 .profile__image:hover {
