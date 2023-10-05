@@ -112,6 +112,7 @@ deleteCardPopup.setEventListeners();
 // cardAdd>>>>>>>>>
 const cardPopup = document.getElementById("popup__add-card");
 const popupAddCard = new PopupWithForm(cardPopup, (data) => {
+  popupAddCard.renderLoading(true);
   api
     .sendNewCard(data)
     .then((info) => {
@@ -119,7 +120,10 @@ const popupAddCard = new PopupWithForm(cardPopup, (data) => {
       cards.addItem(card);
     })
     .catch((e) => console.log(e))
-    .finally(() => popupAddCard.closePopup());
+    .finally(() => {
+      popupAddCard.renderLoading(false);
+      popupAddCard.closePopup();
+    });
 });
 popupAddCard.setEventListeners();
 
@@ -144,11 +148,16 @@ const popupInputName = document.querySelector(".popup__input_type_name");
 const popupInputAbout = document.querySelector(".popup__input_type_about");
 
 const popupProfile = new PopupWithForm(profilePopupElement, (data) => {
+  popupProfile.renderLoading(true);
+
   api
     .editProfile(data)
     .then((info) => userInformation.setUserInfo(info))
     .catch((e) => console.log(e))
-    .finally(() => popupProfile.closePopup());
+    .finally(() => {
+      popupProfile.closePopup();
+      popupProfile.renderLoading(false);
+    });
 });
 
 popupProfile.setEventListeners();
